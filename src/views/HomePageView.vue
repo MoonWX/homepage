@@ -29,7 +29,8 @@
 
         <footer class="text-center mt-12 pb-4">
             <p class="text-sm" :class="isEffectivelyDark ? 'text-gray-300' : 'text-gray-900'">
-                &copy; 2022 - {{ currentYear }} {{ profileData.profile.name }}. <br />
+                &copy; 2022 - {{ currentYear }} {{ profileData.profile.name }}. <a
+                    href="https://github.com/MoonWX/homepage" class="underline">Source</a>. <br />
                 Images sourced online. Background Images Artists: JLT4n on Pixiv (103933948) & evrmore on Pixiv
                 (91202097). Please contact us for removal if any infringement occurs. <br />
                 "Hitokoto" (one-sentence service) is provided by <a href="https://hitokoto.cn/">Hitokoto</a> API. The
