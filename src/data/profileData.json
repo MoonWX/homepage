@@ -1,0 +1,103 @@
+{
+    "profile": {
+        "name": "MoonWX",
+        "tagline": "Today only matters if we can remember it tomorrow."
+    },
+    "avatarUrl": "http://q.qlogo.cn/headimg_dl?dst_uin=2546595550&spec=640&img_type=jpg",
+    "ownerTimezone": "Asia/Shanghai",
+    "hobbies": [
+        {
+            "name": "Code",
+            "icon": "fas fa-code",
+            "color": "text-green-500 dark:text-green-400"
+        },
+        {
+            "name": "Games",
+            "icon": "fas fa-gamepad",
+            "color": "text-black-500 dark:text-white-400"
+        },
+        {
+            "name": "Animes",
+            "icon": "fas fa-tv",
+            "color": "text-blue-500 dark:text-blue-400"
+        },
+        {
+            "name": "Travel",
+            "icon": "fas fa-hiking",
+            "color": "text-yellow-600 dark:text-yellow-500"
+        }
+    ],
+    "contacts": [
+        {
+            "name": "GitHub",
+            "handle": "MoonWX",
+            "url": "https://github.com/MoonWX",
+            "icon": "fab fa-github",
+            "color": "text-gray-800 dark:text-gray-300"
+        },
+        {
+            "name": "Bilibili",
+            "handle": "MoonEclipseNWU",
+            "url": "https://space.bilibili.com/365790992",
+            "icon": "fab fa-bilibili",
+            "color": "text-sky-500 dark:text-sky-400"
+        },
+        {
+            "name": "E-mail",
+            "handle": "i@moonwx.net",
+            "url": "mailto:i@moonwx.net",
+            "icon": "fas fa-envelope",
+            "color": "text-red-500 dark:text-red-400"
+        },
+        {
+            "name": "Telegram",
+            "handle": "MoonWX",
+            "url": "https://t.me/moonwx123",
+            "icon": "fab fa-telegram",
+            "color": "text-blue-500 dark:text-blue-400"
+        }
+    ],
+    "initialLocationInfo": {
+        "city": "Changchun",
+        "country": "China"
+    },
+    "backgroundImages": {
+        "light": "https://cdn.moonwx.net/img/homepage/103933948_p0.jpg",
+        "dark": "https://cdn.moonwx.net/img/homepage/kaguya_waiting.jpg"
+    },
+    "websites": [
+        {
+            "name": "My blog",
+            "url": "https://blog.moonwx.net",
+            "icon": "fas fa-blog",
+            "description": "Record my life and thoughts",
+            "iconColor": "text-orange-500 dark:text-orange-400"
+        },
+        {
+            "name": "My Cloud",
+            "url": "https://pan.moonwx.net",
+            "icon": "fas fa-cloud-upload-alt",
+            "description": "Personal file storage and sharing",
+            "iconColor": "text-blue-500 dark:text-blue-400"
+        },
+        {
+            "name": "My Services",
+            "url": "#",
+            "icon": "fas fa-concierge-bell",
+            "description": "Some self-hosted services",
+            "iconColor": "text-purple-500 dark:text-purple-400"
+        },
+        {
+            "name": "My Code Repository",
+            "url": "https://github.com/MoonWX",
+            "icon": "fab fa-git-alt",
+            "description": "Open source projects and code snippets",
+            "iconColor": "text-green-600 dark:text-green-500"
+        }
+    ],
+    "gpgKey": {
+        "id": "0x7B5AA99726EFE314",
+        "fingerprint": "D41D 8F9C 9D59 A240 DA01 F873 7B5A A997 26EF E314",
+        "publicKey": "-----BEGIN PGP PUBLIC KEY BLOCK-----\nmDMEZ/qgyhYJKwYBBAHaRw8BAQdAbsQ1juWlomHrJzNGz5kkQoeXpblswS8KbB4UwjmaDiy0IE1vb25XWCA8d2FuZ3hpYW8zMDI3QHZpcC5xcS5jb20+iJMEExYKADsWIQTUHY+cnVmiQNoB+HN7WqmXJu/jFAUCZ/qgygIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRB7WqmXJu/jFODXAQD1nY8CfhJHJsbBXhEA1LhTUi3fMSgeWkokr4/GTCt3cwEAyH6ZNEpjJQWyTiI5g2FDaOd+8V561FcN25M5alBQEgy4OARn+qDKEgorBgEEAZdVAQUBAQdApurGbtp+8EYyF7hO1DM7xI/5i5oQt3vK4Sz7sSvvyksDAQgHiHgEGBYKACAWIQTUHY+cnVmiQNoB+HN7WqmXJu/jFAUCZ/qgygIbDAAKCRB7WqmXJu/jFJqnAP0WZbBEnb5Tb6GAQaZ8knLrHKLIXG6rc9kOQe085eSbqQD/bcn/92sf8Rf0H5Gv5xz9kBAmLW6kS+5rq5vlOuwMkQ0==aQcI\n-----END PGP PUBLIC KEY BLOCK-----"
+    }
+}
