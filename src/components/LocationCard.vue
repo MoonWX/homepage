@@ -6,7 +6,7 @@
         </p>
         <div class="aspect-video rounded-lg overflow-hidden border"
             :class="isDarkMode ? 'border-gray-700/50' : 'border-gray-300/50'">
-            <iframe
+            <iframe sandbox="allow-scripts allow-same-origin"
                 src="https://apis.map.qq.com/tools/poimarker?type=0&marker=coord:43.817003,125.323629;title:%E9%95%BF%E6%98%A5;addr:%E9%95%BF%E6%98%A5%E5%B8%82%E4%BA%BA%E6%B0%91%E6%94%BF%E5%BA%9C&key=H6DBZ-4KYYZ-MPEXE-TZXOE-AAEEQ-ZHFPG&referer=homepage"
                 width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" title="Tencent Map"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
