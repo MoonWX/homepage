@@ -38,7 +38,7 @@ const isMapDragging = ref(false);
 
 const isMapInteracting = computed(() => isMouseOverMap.value || isMapDragging.value);
 
-const TENCENT_MAP_KEY = 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77';
+const TENCENT_MAP_KEY = 'H6DBZ-4KYYZ-MPEXE-TZXOE-AAEEQ-ZHFPG';
 
 let sdkLoadPromise = null;
 
