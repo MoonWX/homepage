@@ -25,6 +25,11 @@ jobs:
         env:
           CI: true
 
+      - name: Add CNAME
+        run: |
+          cd ./dist
+          echo "moonwx.net" > CNAME
+
       - name: Deploy to moonwx.github.io
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -32,8 +37,3 @@ jobs:
           personal_token: ${{ secrets.GHP_KEY }}
           commit_message: ${{ github.event.head_commit.message }}
           publish_dir: ./dist
-
-      - name: Add CNAME
-        run: |
-          cd .
-          echo "moonwx.net" > CNAME
