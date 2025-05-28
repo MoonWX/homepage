@@ -93,7 +93,7 @@ async function initMap() {
         mapInstance.value = new TMap.Map(mapContainerRef.value, {
             center: center,
             zoom: 13,
-            mapStyleId: props.isDarkMode ? 'style2' : 'style1',
+            mapStyleId: props.isDarkMode ? 'style2' : 'style0',
             viewMode: '2D',
             draggable: true,
             scrollWheel: true,
@@ -126,7 +126,7 @@ async function initMap() {
 
     } catch (error) {
         console.error("Error initializing Tencent Map:", error);
-        mapError.value = `Map Load Failed: ${error.message || 'Unknown error'}`;    
+        mapError.value = `Map Load Failed: ${error.message || 'Unknown error'}`;
         if (mapContainerRef.value) {
             // mapContainerRef.value.innerHTML = `<p class="text-red-500 p-4 text-center">${mapError.value}</p>`;
         }
@@ -157,7 +157,7 @@ watch(() => props.isDarkMode, (newDarkModeValue) => {
     if (mapInstance.value && window.TMap) {
         try {
             console.log("Setting map style for dark mode:", newDarkModeValue);
-            mapInstance.value.setMapStyleId(newDarkModeValue ? 'style2' : 'style1');
+            mapInstance.value.setMapStyleId(newDarkModeValue ? 'style2' : 'style0');
         } catch (e) {
             console.error("Error setting map style:", e);
         }
