@@ -11,7 +11,7 @@
             :class="isDarkMode ? 'border-gray-700/80' : 'border-white/80'">
         -->
 
-        <img src="https://cdn.moonwx.net/img/qq.webp" alt="avatar"
+        <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2546595550&spec=100&img_type=webp" alt="avatar"
             fetchpriority="high"
             class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 shadow-lg transition-colors duration-500"
             :class="isDarkMode ? 'border-gray-700/80' : 'border-white/80'">
