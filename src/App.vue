@@ -30,7 +30,6 @@ const themePreference = ref('system');
 const systemIsDark = ref(false);
 
 const isEffectivelyDark = computed(() => {
-    console.log('[App.vue] Computing isEffectivelyDark: themePreference =', themePreference.value, ', systemIsDark =', systemIsDark.value);
     if (themePreference.value === 'light') return false;
     if (themePreference.value === 'dark') return true;
     return systemIsDark.value;
@@ -46,51 +45,50 @@ const appBackgroundStyle = computed(() => ({
 let mediaQueryListener = null;
 
 onMounted(() => {
-    console.log('[App.vue] Mounted.');
+    console.log("   _____                        _____  _                ")
+    console.log("  / ____|                      |  __ \\(_)               ")
+    console.log(" | |     __ _ _ __ _ __   ___  | |  | |_  ___ _ __ ___  ")
+    console.log(" | |    / _` | '__| '_ \\ / _ \\ | |  | | |/ _ \\ '_ ` _ \\ ")
+    console.log(" | |___| (_| | |  | |_) |  __/ | |__| | |  __/ | | | | |")
+    console.log("  \\_____\\__,_|_|  | .__/ \\___| |_____/|_|\\___|_| |_| |_|")
+    console.log("                  | |                                   ")
+    console.log("                  |_|                                   ")
+    console.log("  Welcome to MoonWX's Homepage! Enjoy your stay! \n");
     setTimeout(() => {
-        console.log('[App.vue] Initial loading time finished, setting isAppLoading to false.');
         isAppLoading.value = false;
     }, initialLoadingTime);
 
     const savedPreference = localStorage.getItem('themePreference');
-    console.log('[App.vue] Loaded themePreference from localStorage:', savedPreference);
     if (['light', 'dark', 'system'].includes(savedPreference)) {
         themePreference.value = savedPreference;
     } else {
         themePreference.value = 'system';
     }
-    console.log('[App.vue] Current themePreference set to:', themePreference.value);
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     systemIsDark.value = mediaQuery.matches;
-    console.log('[App.vue] Initial systemIsDark:', systemIsDark.value);
 
     mediaQueryListener = (e) => {
-        console.log('[App.vue] System theme changed, new systemIsDark:', e.matches);
         systemIsDark.value = e.matches;
     };
     mediaQuery.addEventListener('change', mediaQueryListener);
 });
 
 onUnmounted(() => {
-    console.log('[App.vue] Unmounted, removing media query listener.');
     if (mediaQueryListener) {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         mediaQuery.removeEventListener('change', mediaQueryListener);
     }
 });
 
-watch(isEffectivelyDark, (newValue, oldValue) => {
-    console.log(`[App.vue] isEffectivelyDark changed from ${oldValue} to ${newValue}. Toggling 'dark' class on html.`);
+watch(isEffectivelyDark, (newValue) => {
     document.documentElement.classList.toggle('dark', newValue);
 }, { immediate: true });
 
 const handleThemePreferenceChange = (preference) => {
-    console.log('[App.vue] handleThemePreferenceChange called with:', preference);
     themePreference.value = preference;
     try {
         localStorage.setItem('themePreference', preference);
-        console.log('[App.vue] themePreference saved to localStorage.');
     } catch (e) {
         console.error('[App.vue] Error saving themePreference to localStorage:', e);
     }
@@ -98,7 +96,6 @@ const handleThemePreferenceChange = (preference) => {
 // --- End Theme Management Logic ---
 
 watch(isAppLoading, (newIsAppLoading) => {
-    console.log('[App.vue] isAppLoading changed to:', newIsAppLoading);
     if (!newIsAppLoading) {
         contentVisible.value = true;
     } else {
@@ -107,7 +104,6 @@ watch(isAppLoading, (newIsAppLoading) => {
 });
 
 const handleLoadingSequenceFinished = () => {
-    console.log('[App.vue] handleLoadingSequenceFinished called, setting showLoadingScreen to false.');
     showLoadingScreen.value = false;
 };
 </script>
