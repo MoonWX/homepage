@@ -1,5 +1,5 @@
 <template>
-    <CardWrapper title="GPG Public Keys" icon="fas fa-key" iconColor="text-green-500 dark:text-green-400"
+    <CardWrapper title="GPG Public Keys" icon="fas fa-key" iconColor="text-green-600 dark:text-green-400"
         :isDarkMode="isDarkMode">
         <div class="space-y-3">
             <div v-if="gpgKeyData.id" class="text-sm">
@@ -20,7 +20,7 @@
                 class="mt-3 w-full px-4 py-2 text-sm rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 flex items-center justify-center"
                 :class="isDarkMode
                     ? 'bg-green-600/80 hover:bg-green-500/80 text-white focus:ring-green-400'
-                    : 'bg-green-500 hover:bg-green-600 text-white focus:ring-green-300'">
+                    : 'bg-green-600 hover:bg-green-500 text-white focus:ring-green-300'">
                 <i :class="copySuccess ? 'fas fa-check' : 'far fa-copy'" class="mr-2"></i>
                 {{ copyButtonText }}
             </button>

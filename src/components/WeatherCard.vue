@@ -10,7 +10,7 @@
                 class="mt-4 px-4 py-2 text-sm rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2"
                 :class="isDarkMode
                     ? 'bg-gray-700 hover:bg-gray-600 text-white focus:ring-gray-500 disabled:bg-gray-800'
-                    : 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-300 disabled:bg-blue-300'">
+                    : 'bg-blue-600 hover:bg-blue-500 text-white focus:ring-blue-300 disabled:bg-blue-300'">
                 <i :class="isFetching ? 'fas fa-spinner fa-spin' : 'fas fa-sync-alt'" class="mr-1"></i>
                 {{ isFetching ? 'Refreshing...' : 'Refresh Weather' }}
             </button>
