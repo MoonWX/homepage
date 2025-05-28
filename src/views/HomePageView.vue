@@ -72,6 +72,8 @@ const profileData = ref(profileDataJson);
 const staticLocationData = ref({
     city: profileDataJson.initialLocationInfo?.city || 'Changchun',
     country: profileDataJson.initialLocationInfo?.country || 'China',
+    latitude: profileDataJson.initialLocationInfo?.latitude || 43.817003,
+    longitude: profileDataJson.initialLocationInfo?.longitude || 125.323629,
 });
 
 const onSetThemePreference = (preference) => {

@@ -59,7 +59,9 @@
     ],
     "initialLocationInfo": {
         "city": "Changchun",
-        "country": "China"
+        "country": "China",
+        "latitude": 43.817003,
+        "longitude": 125.323629
     },
     "backgroundImages": {
         "light": "https://cdn.moonwx.net/img/homepage/103933948_p0.jpg",
