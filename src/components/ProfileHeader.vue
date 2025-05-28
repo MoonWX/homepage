@@ -1,8 +1,21 @@
 <template>
     <header class="text-center pt-12">
-        <img :src="avatarUrl" alt="avatar"
+
+        <!--
+            I commented this because I need to optimize the loading speed of website and there should be no JavaScript
+            If you want to use this, please uncomment it and comment the next one.
+        -->
+
+        <!-- <img :src="avatarUrl" alt="avatar"
             class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 shadow-lg transition-colors duration-500"
             :class="isDarkMode ? 'border-gray-700/80' : 'border-white/80'">
+        -->
+
+        <img src="https://q.qlogo.cn/headimg_dl?dst_uin=2546595550&spec=640&img_type=jpg" alt="avatar"
+            fetchpriority="high"
+            class="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 shadow-lg transition-colors duration-500"
+            :class="isDarkMode ? 'border-gray-700/80' : 'border-white/80'">
+
         <h1 class="text-3xl sm:text-4xl font-bold transition-colors duration-500 ease-in-out text-readable-on-bg"
             :class="isDarkMode ? 'text-white' : 'text-gray-900'">
             {{ profile.name }}
