@@ -18,14 +18,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, computed, nextTick } from 'vue'; // Added nextTick
+import { ref, onMounted, onUnmounted, watch, computed, nextTick } from 'vue';
 import CardWrapper from './CardWrapper.vue';
 
 const props = defineProps({
     locationInfo: {
         type: Object,
-        required: true,
-        default: () => ({ city: 'Changchun', country: 'China', latitude: 43.817003, longitude: 125.323629 })
+        required: true
     },
     isDarkMode: Boolean
 });
@@ -39,20 +38,25 @@ const isMapDragging = ref(false);
 
 const isMapInteracting = computed(() => isMouseOverMap.value || isMapDragging.value);
 
-function ensureTMapIsReady() {
+const LIGHT_MAP_STYLE_ID = 'style1';
+const DARK_MAP_STYLE_ID = 'style2';
+
+const mapEventListeners = ref([]);
+
+function ensureQQMapsIsReady() {
     return new Promise((resolve, reject) => {
-        if (window.TMap && window.TMap.LatLng) { // Check for a specific TMap constructor
-            resolve(window.TMap);
+        if (window.qq && window.qq.maps && window.qq.maps.LatLng) {
+            resolve(window.qq.maps);
         } else {
             let attempts = 0;
             const interval = setInterval(() => {
-                if (window.TMap && window.TMap.LatLng) {
+                if (window.qq && window.qq.maps && window.qq.maps.LatLng) {
                     clearInterval(interval);
-                    resolve(window.TMap);
-                } else if (attempts++ > 100) { // Wait up to 10 seconds
+                    resolve(window.qq.maps);
+                } else if (attempts++ > 100) {
                     clearInterval(interval);
-                    console.error('Tencent Map SDK (window.TMap) not found after 10 seconds.');
-                    reject(new Error('Tencent Map SDK (TMap) not found. Ensure it is loaded in index.html.'));
+                    console.error('Tencent Map JS API V2 (qq.maps) not found after 10 seconds.');
+                    reject(new Error('Tencent Map JS API V2 (qq.maps) not found. Ensure it is loaded in index.html with the correct SDK URL.'));
                 }
             }, 100);
         }
@@ -75,116 +79,94 @@ async function initMap() {
     mapError.value = '';
 
     try {
-        console.log("Attempting to initialize map...");
-        const TMap = await ensureTMapIsReady();
-        console.log("TMap SDK ready:", TMap);
+        const qqMaps = await ensureQQMapsIsReady();
 
-        if (mapInstance.value && typeof mapInstance.value.destroy === 'function') {
-            console.log("Destroying existing map instance.");
-            mapInstance.value.destroy();
-            mapInstance.value = null;
+        if (mapInstance.value) {
+            mapEventListeners.value.forEach(listener => qqMaps.event.removeListener(listener));
+            mapEventListeners.value = [];
         }
-        // Ensure container is empty before initializing
         mapContainerRef.value.innerHTML = '';
 
-        const center = new TMap.LatLng(props.locationInfo.latitude, props.locationInfo.longitude);
-        console.log("Map center:", center);
+        const center = new qqMaps.LatLng(props.locationInfo.latitude, props.locationInfo.longitude);
 
-        mapInstance.value = new TMap.Map(mapContainerRef.value, {
+        mapInstance.value = new qqMaps.Map(mapContainerRef.value, {
             center: center,
-            zoom: 13,
-            mapStyleId: props.isDarkMode ? 'style2' : 'style0',
-            viewMode: '2D',
+            zoom: 5,
+            mapStyleId: props.isDarkMode ? DARK_MAP_STYLE_ID : LIGHT_MAP_STYLE_ID,
+            mapTypeId: qqMaps.MapTypeId.ROADMAP,
             draggable: true,
-            scrollWheel: true,
-            doubleClickZoom: true
+            scrollwheel: true,
+            disableDoubleClickZoom: false
         });
-        console.log("Map instance created:", mapInstance.value);
 
-        mapInstance.value.on('dragstart', handleMapDragStart);
-        mapInstance.value.on('dragend', handleMapDragEnd);
-        console.log("Map event listeners added.");
-
-        new TMap.MultiMarker({
+        const redMarkerIconUrl = 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerNew.png';
+        const markerIcon = new qqMaps.MarkerImage(
+            redMarkerIconUrl,
+            new qqMaps.Size(64, 64), // 图标的原始尺寸 (根据实际图片调整)
+            new qqMaps.Point(0, 0),  // 图标的起点 (相对于图片左上角)
+            new qqMaps.Point(20.5, 41.5), // 图标的锚点 (标记的哪个点对准地图坐标，通常是底部中心)
+            new qqMaps.Size(42, 42)  // 图标在地图上显示的缩放尺寸 (根据实际图片调整)
+        );
+        new qqMaps.Marker({
             map: mapInstance.value,
-            styles: {
-                "myLocationStyle": new TMap.MarkerStyle({
-                    "width": 42,
-                    "height": 42,
-                    "anchor": { x: 15, y: 42 },
-                    "src": 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerNew.png',
-                }),
-            },
-            geometries: [{
-                "id": "current-location",
-                "styleId": 'myLocationStyle',
-                "position": center,
-                "properties": { "title": props.locationInfo.city }
-            }]
+            position: center,
+            icon: markerIcon,
         });
-        console.log("Marker added to map.");
+
+        mapEventListeners.value.push(
+            qqMaps.event.addListener(mapInstance.value, 'dragstart', handleMapDragStart)
+        );
+        mapEventListeners.value.push(
+            qqMaps.event.addListener(mapInstance.value, 'dragend', handleMapDragEnd)
+        );
 
     } catch (error) {
-        console.error("Error initializing Tencent Map:", error);
-        mapError.value = `Map Load Failed: ${error.message || 'Unknown error'}`;
-        if (mapContainerRef.value) {
-            // mapContainerRef.value.innerHTML = `<p class="text-red-500 p-4 text-center">${mapError.value}</p>`;
-        }
+        console.error("Error initializing Tencent Map (qq.maps):", error);
+        mapError.value = `Map load failed: ${error.message || 'Unknown error'}`;
     }
 }
 
 onMounted(async () => {
-    console.log("LocationCard.vue onMounted: mapContainerRef.value is", mapContainerRef.value);
-    // Wait for next tick to ensure DOM is fully ready, especially if there are v-if directives higher up.
     await nextTick();
     if (mapContainerRef.value) {
-        console.log("mapContainerRef is available, calling initMap.");
         initMap();
     } else {
-        // This case should be less likely with nextTick, but as a fallback:
-        console.warn("mapContainerRef not available on mount, watching...");
         const unwatch = watch(mapContainerRef, (newEl) => {
             if (newEl && !mapInstance.value) {
-                console.log("mapContainerRef became available via watch, calling initMap.");
                 initMap();
-                unwatch(); // Stop watching once initialized
+                unwatch();
             }
         });
     }
 });
 
 watch(() => props.isDarkMode, (newDarkModeValue) => {
-    if (mapInstance.value && window.TMap) {
+    if (mapInstance.value && window.qq && window.qq.maps) {
         try {
-            console.log("Setting map style for dark mode:", newDarkModeValue);
-            mapInstance.value.setMapStyleId(newDarkModeValue ? 'style2' : 'style0');
+            const newStyleId = newDarkModeValue ? DARK_MAP_STYLE_ID : LIGHT_MAP_STYLE_ID;
+            mapInstance.value.setMapStyleId(newStyleId);
         } catch (e) {
-            console.error("Error setting map style:", e);
+            console.error("Error setting map style (qq.maps):", e);
+            mapError.value = `Switch map style failed: ${e.message}`;
         }
     }
 });
 
 onUnmounted(() => {
-    console.log("LocationCard.vue onUnmounted: Destroying map instance.");
-    if (mapInstance.value) {
-        if (typeof mapInstance.value.destroy === 'function') {
-            mapInstance.value.destroy();
-        }
-        mapInstance.value = null;
+    if (window.qq && window.qq.maps && mapInstance.value) {
+        mapEventListeners.value.forEach(listener => window.qq.maps.event.removeListener(listener));
+        mapEventListeners.value = [];
     }
+    mapInstance.value = null;
 });
 </script>
 
 <style scoped>
-/* Ensure map container has a background for better visual during loading or if map fails */
-div[ref="mapContainerRef"] {
+.map-container-wrapper {
     background-color: #f0f0f0;
-    /* Light gray fallback */
 }
 
-.dark div[ref="mapContainerRef"] {
-    /* If you have .dark on a parent for dark mode */
+.dark .map-container-wrapper {
     background-color: #333333;
-    /* Dark gray fallback */
 }
 </style>
