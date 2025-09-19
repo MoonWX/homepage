@@ -7,24 +7,32 @@
     "ownerTimezone": "Asia/Shanghai",
     "hobbies": [
         {
-            "name": "Code",
-            "icon": "fas fa-code",
-            "color": "text-green-500 dark:text-green-400"
+            "name": "Bilibili",
+            "handle": "MoonEclipseNWU",
+            "url": "https://space.bilibili.com/365790992",
+            "icon": "fab fa-bilibili",
+            "color": "text-sky-500 dark:text-sky-400"
         },
         {
-            "name": "Games",
-            "icon": "fas fa-gamepad",
+            "name": "Steam",
+            "handle": "MoonEclipse_",
+            "url": "https://store.steampowered.com/id/moonwx",
+            "icon": "fab fa-steam",
             "color": "text-black-500 dark:text-white-400"
         },
         {
-            "name": "Animes",
-            "icon": "fas fa-tv",
-            "color": "text-blue-500 dark:text-blue-400"
+            "name": "Xbox",
+            "handle": "MoonEclipseX",
+            "url": "https://www.xbox.com/en-us/play/user/MoonEclipseX",
+            "icon": "fab fa-xbox",
+            "color": "text-green-500 dark:text-green-400"
         },
         {
-            "name": "Travel",
-            "icon": "fas fa-hiking",
-            "color": "text-yellow-600 dark:text-yellow-500"
+            "name": "PlayStation",
+            "handle": "MoonWX",
+            "url": "https://psnprofiles.com/MoonEclipseNWU",
+            "icon": "fab fa-playstation",
+            "color": "text-black-500 dark:text-white-400"
         }
     ],
     "contacts": [
@@ -36,11 +44,11 @@
             "color": "text-gray-800 dark:text-gray-300"
         },
         {
-            "name": "Bilibili",
+            "name": "X",
             "handle": "MoonEclipseNWU",
-            "url": "https://space.bilibili.com/365790992",
-            "icon": "fab fa-bilibili",
-            "color": "text-sky-500 dark:text-sky-400"
+            "url": "https://x.com/MoonEclipseNWU",
+            "icon": "fab fa-twitter",
+            "color": "text-blue-500 dark:text-blue-400"
         },
         {
             "name": "E-mail",
@@ -58,10 +66,10 @@
         }
     ],
     "initialLocationInfo": {
-        "city": "Changchun",
+        "city": "Beijing",
         "country": "China",
-        "latitude": 43.817003,
-        "longitude": 125.323629
+        "latitude": 39.784471,
+        "longitude": 116.562223
     },
     "backgroundImages": {
         "light": "https://cdn.moonwx.net/img/homepage/103933948_p0.jpg",

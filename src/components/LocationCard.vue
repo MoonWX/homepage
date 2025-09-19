@@ -2,7 +2,7 @@
     <CardWrapper title="My Geographical Location" icon="fas fa-map-marker-alt" iconColor="text-orange-400"
         :isDarkMode="isDarkMode" :hoverEffectDisabled="isMapInteracting">
         <p class="mb-3 text-sm">
-            I'm living in {{ locationInfo.city }}, {{ locationInfo.country }} now.
+            I'm currently doing an internship in {{ locationInfo.city }}, {{ locationInfo.country }} now.
         </p>
         <div class="aspect-video rounded-lg overflow-hidden border relative"
             :class="isDarkMode ? 'border-gray-700/50' : 'border-gray-300/50'">
