@@ -7,7 +7,7 @@
     "ownerTimezone": "Asia/Shanghai",
     "hobbies": [
         {
-            "name": "Bilibili",
+            "name": "BiliBili",
             "handle": "MoonEclipseNWU",
             "url": "https://space.bilibili.com/365790992",
             "icon": "fab fa-bilibili",
@@ -16,7 +16,7 @@
         {
             "name": "Steam",
             "handle": "MoonEclipse_",
-            "url": "https://store.steampowered.com/id/moonwx",
+            "url": "https://steamcommunity.com/id/moonwx",
             "icon": "fab fa-steam",
             "color": "text-black-500 dark:text-white-400"
         },
@@ -82,20 +82,6 @@
             "icon": "fas fa-blog",
             "description": "Record my life and thoughts",
             "iconColor": "text-orange-500 dark:text-orange-400"
-        },
-        {
-            "name": "My Cloud",
-            "url": "https://pan.moonwx.net",
-            "icon": "fas fa-cloud-upload-alt",
-            "description": "Personal file storage and sharing",
-            "iconColor": "text-blue-500 dark:text-blue-400"
-        },
-        {
-            "name": "My Services",
-            "url": "#",
-            "icon": "fas fa-concierge-bell",
-            "description": "Some self-hosted services",
-            "iconColor": "text-purple-500 dark:text-purple-400"
         },
         {
             "name": "My Code Repository",
